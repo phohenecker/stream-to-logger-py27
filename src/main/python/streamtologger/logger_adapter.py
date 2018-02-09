@@ -54,9 +54,9 @@ class LoggerAdapter(object):
 
     def __init__(
             self,
-            logger: logging.Logger,
-            log_level: int=logging.INFO,
-            header_format: str=None
+            logger,
+            log_level=logging.INFO,
+            header_format=None
     ):
         """Creates a new instance of ``LoggerAdapter`` that uses the provided logger and logging level.
 
@@ -71,7 +71,7 @@ class LoggerAdapter(object):
         self.log_level = log_level
         self.header_format = header_format
 
-    def write(self, buffer) -> None:
+    def write(self, buffer):
         # split buffer into lines
         lines = buffer.splitlines()
 
@@ -103,6 +103,6 @@ class LoggerAdapter(object):
         # store whether the next write starts a new line
         self._new_line = final_new_line
 
-    def flush(self) -> None:
+    def flush(self):
         """This method does not implement any functionality, but is only present in order to prevent errors."""
         pass

@@ -4,6 +4,8 @@
 """A simple example of how to redirect stdout/stderr to a file (in addition to printing to the screen)."""
 
 
+from __future__ import print_function
+
 import streamtologger
 
 

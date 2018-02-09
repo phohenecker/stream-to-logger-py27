@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-"""The root of the provided python package, which contains a single module."""
+"""A backport of stream-to-logger for Python 2.7."""
 
 
 import logging
 import sys
-import typing
 
 from streamtologger.logger_adapter import LoggerAdapter
 
@@ -45,11 +44,11 @@ _is_redirected = False
 
 
 def redirect(
-        target: typing.Union[logging.Logger, str]="out.log",
-        print_to_screen: bool=True,
-        append: bool=True,
-        header_format: str=None
-) -> None:
+        target="out.log",
+        print_to_screen=True,
+        append=True,
+        header_format=None
+):
     """Redirects stdout/stderr to the specified target.
 
     Args:

@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
+from __future__ import print_function
+
 import os
-import sys
-import typing
 import unittest
 
 import streamtologger
@@ -43,7 +43,7 @@ __status__ = "Development"
 class InitTest(unittest.TestCase):
 
     @staticmethod
-    def _read_file(path: str) -> typing.List[str]:
+    def _read_file(path):
         """Reads the file at the provided path and returns a list of its lines.
 
         Args:
@@ -55,7 +55,7 @@ class InitTest(unittest.TestCase):
         with open(path) as f:
             return [line.strip() for line in f]
 
-    def test_redirect(self) -> None:
+    def test_redirect(self):
         # this is the path of the log file that is used in this test
         log_file = "test-out.log"
 

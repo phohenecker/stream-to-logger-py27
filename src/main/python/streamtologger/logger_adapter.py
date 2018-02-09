@@ -70,6 +70,7 @@ class LoggerAdapter(object):
         self.logger = logger
         self.log_level = log_level
         self.header_format = header_format
+        self._prepend = ""  # TODO
 
     def write(self, buffer):
         # split buffer into lines
@@ -81,24 +82,23 @@ class LoggerAdapter(object):
 
         # forward provided buffer to the logger
         for index, line in enumerate(lines, start=1):
+            
+            # if we are at the last line and it does not end with a "\n"
+            # do not log it immediately, but save it for the next "\n"
+            if index == len(lines) and not final_new_line:
+                self._prepend += line
+            else:
+                # prepare line header (if specified)
+                header = ""
+                if self.header_format is not None:
+                    header = self.header_format.format(
+                            level=logging.getLevelName(self.log_level),
+                            timestamp=datetime.datetime.now()
+                    )
 
-            # print line header (if specified)
-            if self.header_format is not None and (index > 1 or self._new_line):
-                self.logger.log(
-                        self.log_level,
-                        self.header_format.format(
-                                level=logging.getLevelName(self.log_level),
-                                timestamp=datetime.datetime.now()
-                        )
-                )
-
-            # log current line
-            self.logger.log(self.log_level, line)
-
-            # add newline (if necessary)
-            last_line = index == len(lines)
-            if (not last_line) or (last_line and final_new_line):
-                self.logger.log(self.log_level, "\n")
+                # log current line
+                self.logger.log(self.log_level, header + self._prepend + line)
+                self._prepend = ""
 
         # store whether the next write starts a new line
         self._new_line = final_new_line

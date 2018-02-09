@@ -91,12 +91,10 @@ def redirect(
         # setup logging to console
         if print_to_screen:
             console_handler = logging.StreamHandler(stream=sys.stdout)
-            console_handler.terminator = ""
             root_logger.addHandler(console_handler)
 
         # setup logging to file
         file_handler = logging.FileHandler(target, mode=("a" if append else "w"))
-        file_handler.terminator = ""
         root_logger.addHandler(file_handler)
 
         # redirect stdout/stderr to the logger

@@ -28,4 +28,4 @@
 
 
 export PYTHONPATH=`pwd`/src/main/python:${PYTHONPATH}
-python3 -m unittest discover -s src/test/python -p "*_test.py"
+/usr/bin/env python2.7 -m unittest discover -s src/test/python -p "*_test.py"

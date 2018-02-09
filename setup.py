@@ -46,21 +46,19 @@ setup(
         author_email="mail@paho.at",
         classifiers=[
                 "License :: OSI Approved :: MIT License",
-                "Programming Language :: Python :: 3"
+                "Programming Language :: Python :: 2.7"
         ],
         copyright="Copyright (c) 2017 Patrick Hohenecker",
         data_files=[
                 (".", ["LICENSE", "README.md"])
         ],
-        description="A package for redirecting stdout/stderr to a file.",
-        download_url="https://github.com/phohenecker/stream-to-logger/archive/v2017.1.tar.gz",
+        description="A backport of stream-to-logger for Python 2.7.",
         install_requires=[],
         license="MIT License",
         long_description=long_description,
         name="streamtologger",
         package_dir={"": "src/main/python"},
         packages=["streamtologger"],
-        python_requires=">=3",
-        url="https://github.com/phohenecker/stream-to-logger",
+        url="https://github.com/phohenecker/stream-to-logger-py27",
         version="2017.1"
 )
